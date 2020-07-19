@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const { dbConnection } = require('./database/config');
 
 // Creamos el servidor
@@ -7,10 +8,9 @@ const app = express();
 // Base de datos
 dbConnection()
 
+
 // aJtR46ckGunyhx6
 // user_admin
-
-const port = 3000;
 
 // Rutas
 app.get('/', (req, res) => {
@@ -20,6 +20,6 @@ app.get('/', (req, res) => {
   })
 })
 
-app.listen(port, () => {
-  console.log('Servidor corriendo en puerto ' + port);
+app.listen(process.env.PORT, () => {
+  console.log('Servidor corriendo en puerto ' + process.env.PORT);
 })
