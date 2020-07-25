@@ -9,6 +9,9 @@ const app = express();
 // Config CORS
 app.use(cors())
 
+// Lectura de y parseo del body
+app.use(express.json());
+
 // Base de datos
 dbConnection()
 
@@ -20,5 +23,5 @@ dbConnection()
 app.use('/api/usuarios', require('./routes/usuarios'));
 
 app.listen(process.env.PORT, () => {
-  console.log('Servidor corriendo en puerto ' + 'http://localhost:' + process.env.PORT);
+  console.log('Servidor corriendo en puerto ' + process.env.PORT + ' Click ~> ' + 'http://localhost:' + process.env.PORT);
 })
