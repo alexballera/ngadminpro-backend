@@ -15,7 +15,7 @@ const getUsuarios = async(req, res) => {
 const crearUsuarios = async(req, res = response) => {
 
   // Destructuramos
-  const { email, password, nombre } = req.body;
+  const { email, password } = req.body;
 
   try {
 
