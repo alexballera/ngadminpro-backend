@@ -2,6 +2,9 @@
  * Rutas: /api/medicos
 */
 const { Router } = require('express');
+const { validarJWT } = require('../middlewares/validar-jwt');
+const { check } = require('express-validator')
+const { validarCampos } = require('../middlewares/validar-campos');
 
 const {
   getMedicos,
@@ -17,6 +20,9 @@ router.get('/', getMedicos)
 router.post('/',
   // Validaciones
   [
+    validarJWT,
+    check('nombre', 'El nombre del médico es obligatorio').not().notEmpty(),
+    validarCampos,
   ],
   crearMedico
 )
