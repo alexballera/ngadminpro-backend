@@ -3,6 +3,7 @@ const Hospital = require('../models/hospital');
 
 const getHospitales = async(req, res = response) => {
 
+  // Con populate se pasan por argumentos modelo: 'usuario' y las celdas p.e 'nombre img'
   const hospitales = await Hospital.find()
                                     .populate('usuario', 'nombre img')
 

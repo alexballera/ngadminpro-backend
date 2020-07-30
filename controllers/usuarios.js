@@ -5,12 +5,32 @@ const { generarJWT } = require('../helpers/jwt');
 
 const getUsuarios = async(req, res) => {
 
-  const usuarios = await Usuario.find({}, 'nombre email role google')
+  // Recogemos parámetros desde la request
+  const desde = Number(req.query.desde) || 0
+
+  // Skip salta hasta la pos 'desde' limit establece el límite de la salida del query
+  // Se pasan por argumentos lo que se quiere mostrar p.e 'nombre email role google'
+  // const usuarios = await Usuario
+  //                         .find({}, 'nombre email role google')
+  //                         .skip(desde)
+  //                         .limit(5);
+  
+  // const total = await Usuario.count()
+
+  // Para optimizar el código anterior usamos Promesas
+  const [usuarios, total] = await Promise.all([
+    Usuario
+      .find({}, 'nombre email role google')
+      .skip(desde)
+      .limit(5),
+      Usuario.count()
+  ])
 
   res.json({
     ok: true,
     usuarios,
-    uid: req.uid
+    uid: req.uid,
+    total
   })
 }
 
