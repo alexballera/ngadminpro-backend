@@ -32,6 +32,40 @@ const getTodo = async(req, res = response) => {
   })
 }
 
+const getDocumentosColeccion = async(req, res = response) => {
+
+  const tabla = req.params.tabla
+  const busqueda = req.params.busqueda
+  const regex = new RegExp(busqueda, 'i')
+
+  let data = []
+
+  switch (tabla) {
+    case 'medicos':
+      data = await Medicos.find({nombre: regex})
+                          .populate('usuario', 'nombre img')
+                          .populate('hospital', 'nombre img')
+      break;
+    case 'hospitales':
+      data = await Hospitales.find({nombre: regex})
+                          .populate('usuario', 'nombre img')
+      break;
+    case 'usuarios':
+      data = await Usuarios.find({nombre: regex})
+      break;
+    default:
+      return res.status(400).json({
+              ok: false,
+              msg: 'No tabla debe ser usuarios/medicos/hospitales'
+            })
+          }
+  res.json({
+    ok: true,
+    resultados: data
+  })
+}
+
 module.exports = {
-  getTodo
+  getTodo,
+  getDocumentosColeccion
 }
