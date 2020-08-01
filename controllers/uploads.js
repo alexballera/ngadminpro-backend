@@ -1,5 +1,6 @@
 const { response } = require("express");
 const { v4: uuidv4 } = require('uuid');
+const { actualizarImagen } = require("../helpers/actualizar-imagen");
 
 const fileUpload = (req, res = response) => {
 
@@ -54,19 +55,15 @@ const fileUpload = (req, res = response) => {
       })
     }
 
+    // Actualizar base de datos
+    actualizarImagen(tipo, id, nombreArchivo)
+
     res.json({
       ok: true,
       msg: 'Archivo subido',
       nombreArchivo
     })
   });
-
-
-
-  res.json({
-    ok: true,
-    nombreArchivo
-  })
 }
 
 module.exports = {
