@@ -15,7 +15,7 @@ const getUsuarios = async(req, res) => {
   //                         .skip(desde)
   //                         .limit(5);
   
-  // const total = await Usuario.count()
+  // const total = await Usuario.countDocuments()
 
   // Para optimizar el código anterior usamos Promise
   const [usuarios, total] = await Promise.all([
