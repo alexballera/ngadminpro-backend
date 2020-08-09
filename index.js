@@ -14,10 +14,11 @@ app.use(express.json());
 
 // Base de datos
 dbConnection()
-
-
 // aJtR46ckGunyhx6
 // user_admin
+
+// Directorio público
+app.use(express.static('public'))
 
 // Rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
