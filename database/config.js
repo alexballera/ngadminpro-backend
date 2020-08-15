@@ -4,7 +4,7 @@ require('dotenv').config();
 const dbConnection = async() => {
 
   try {
-    await mongoose.connect(process.env.DB_CNN, {
+    await mongoose.connect(`mongodb+srv://user_admin:${process.env.DB_CNN}.mongodb.net/hospitaldb`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
