@@ -10,16 +10,11 @@ const googleVerify = async(token) => {
       //[process.env.GOOGLE_ID_1, process.env.GOOGLE_ID_2, process.env.GOOGLE_ID_3]
   });
   const payload = ticket.getPayload();
-  const userid = payload['sub'];
 
   const {name, email, picture} = payload
 
   return {name, email, picture};
-
-  // If request specified a G Suite domain:
-  // const domain = payload['hd'];
 }
-// verify().catch(console.error);
 module.exports = {
   googleVerify
 }
